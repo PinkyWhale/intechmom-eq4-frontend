@@ -1,13 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repo Dev</title>
+    <title>Perfil Comercial</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <h1>Repo de prueba</h1>
-<!-- reemplazar este index.html por el original -->
+    <h1>Perfil Comercial</h1>
+    <form id="perfilForm" onsubmit="return guardarDatos()">
+        <label for="nombreMarca">Nombre de la Marca/Emprendimiento*</label><br>
+        <input type="text" id="nombreMarca" maxlength="200" required><br><br>
 
+        <label for="origen">¿Cuál es el Origen?*</label><br>
+        <input type="text" id="origen" maxlength="200" required><br><br>
+
+        <label for="inspiracion">¿Qué te inspiró?*</label><br>
+        <input type="text" id="inspiracion" maxlength="200" required><br><br>
+
+        <label for="mision">¿Cuál es tu misión y valores?*</label><br>
+        <input type="text" id="mision" maxlength="200" required><br><br>
+
+        <label for="personalidad">¿Cómo describirías la personalidad de tu marca? Voz y tono*</label><br>
+        <input type="text" id="personalidad" maxlength="200" required><br><br>
+
+        <label for="descripcionNegocio">Describe de qué se trata tu Negocio*</label><br>
+        <input type="text" id="descripcionNegocio" maxlength="200" required><br><br>
+
+        <label for="unico">¿Qué hace que tu negocio sea único?*</label><br>
+        <input type="text" id="unico" maxlength="200" required><br><br>
+
+        <label for="clientes">¿Quiénes son tus clientes objetivos?*</label><br>
+        <input type="text" id="clientes" maxlength="200" required><br><br>
+
+        <button type="submit">Guardar y Continuar</button>
+    </form>
+
+    <script src="script.js">
+        function guardarDatos() {
+    var perfil = {
+        "Nombre de la Marca/Emprendimiento": document.getElementById("nombreMarca").value,
+        "Origen": document.getElementById("origen").value,
+        "Inspiración": document.getElementById("inspiracion").value,
+        "Misión y Valores": document.getElementById("mision").value,
+        "Personalidad de la Marca": document.getElementById("personalidad").value,
+        "Descripción del Negocio": document.getElementById("descripcionNegocio").value,
+        "¿Qué hace único al negocio?": document.getElementById("unico").value,
+        "Clientes Objetivos": document.getElementById("clientes").value
+    };
+
+    var perfilJSON = JSON.stringify(perfil);
+    console.log(perfilJSON);
+
+    // Aquí puedes enviar el perfilJSON a un servidor o almacenarlo localmente
+
+    return false; // Evita que el formulario se envíe
+}
+    </script>
 </body>
 </html>
