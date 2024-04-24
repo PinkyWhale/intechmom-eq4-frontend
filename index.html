@@ -9,22 +9,87 @@
 </head>
 <body>
     <div class="card">
+
+
         <h1>Texto Sugerido</h1>
         <div class="card1">
-            <img src="../intechmom-eq4-frontend/Groupversion1.png" alt="" />
 
-          
+            <img src="../intechmom-eq4-frontend/Groupversion1.png" alt="" />
+          <!--  Es un atributo contenteditable  que el texto sea editable por el usuario. Si quieres que el texto sea editable, puedes cambiar el valor a true.-->
             <p id="mensaje" contenteditable="true">
-              Hello chatgpt
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. In, quo? Aperiam quidem ab molestiae omnis, sapiente reprehenderit soluta, sed ducimus commodi iusto explicabo fuga nostrum? Et aliquid atque beatae totam.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur consequuntur provident praesentium quidem illum repellendus accusantium, nostrum delectus architecto sit, dolorem repudiandae deserunt aspernatur odit ipsa vel sapiente mollitia. Consectetur!}
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Architecto, veritatis nesciunt modi veniam repudiandae eaque unde expedita perspiciatis, 
+          quaerat quos accusamus voluptatum reiciendis sint porro commodi sit vitae eveniet sapiente?
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci voluptatem commodi veritatis dolorem perspiciatis, culpa id harum numquam tempora, suscipit accusantium? 
+          Eaque omnis nostrum asperiores consectetur modi quam obcaecati accusantium.
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel, dolore rem! Vitae optio repellat, totam, nesciunt ea ex nostrum, itaque perspiciatis minus cumque distinctio! Rerum blanditiis 
+          laudantium animi ab aspernatur.
             </p>
         </div>
         <div class="button">
-        
+        <!--  Identificadores de botones editButton sendButton  referenciarlos en el JavaScript.-->
             <button id="editButton">Volver a Generar </button>
             <button id="sendButton">Guardar</button>
         </div>
     </div>
    <!--  Enlaces JavaScript-->
-    <script src="app.js"></script>
+    <script>
+        document.getElementById('editButton').addEventListener('click', function() {
+            // Hacer que el párrafo sea editable
+            document.getElementById('mensaje').setAttribute('contenteditable', 'true');
+        });
+        
+        document.getElementById('sendButton').addEventListener('click', function() {
+            // Obtener el contenido del párrafo
+            const mensaje = document.getElementById('mensaje').innerText.trim();
+        
+            // Realizar la consulta a ChatGPT
+            const apiKey = '';  // configurar la clave de API de forma segura
+            const endpoint = 'https://api.openai.com/v1/chat/completions';
+        
+            const data = {
+               // Modelo de procesamiento de lenguaje natural.
+                model: "gpt-4",
+                messages: [
+                    { role: "system", content: "" },
+                    // Mensaje del usuario, se espera que contenga el contenido de un mensaje previamente definido.
+                    { role: "user", content: mensaje }
+                ]
+            };
+        
+            fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiKey}`
+                },
+                // Convierte el objeto 'data' en una cadena JSON para su posterior envío o almacenamiento.
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                // Verifica si la respuesta de la solicitud no es exitosa.
+                if (!response.ok) {
+                     // Si la respuesta no es exitosa, lanza un error con el estado HTTP.
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                 // Si la respuesta es exitosa, la convierte a formato JSON y la devuelve.
+                return response.json();
+            })
+            .then(data => {
+                const respuestaChatGPT = data.choices[0].message.content;
+                // Actualizar  la respuesta de ChatGPT
+                document.getElementById('mensaje').innerText = respuestaChatGPT;
+            })
+            .catch(error => {
+                console.error('error tu consulta', error);
+                document.getElementById('mensaje').innerText = "Espera tu respuesta...";
+            });
+        
+            // Deshabilitar la edición del párrafo
+            document.getElementById('mensaje').setAttribute('contenteditable', 'false');
+        });
+        
+    </script>
 </body>
 </html>
