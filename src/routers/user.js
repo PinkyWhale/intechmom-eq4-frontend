@@ -18,31 +18,36 @@ router.get("/users", async (req, res) => {
 router.get("/users/:id", async (req, res) => {
   const id = req.params.id;
 
-  modelUser.findById(id)
-    .then(user => {
+  modelUser
+    .findById(id)
+    .then((user) => {
       if (!user)
-        res.status(404).send({ message: "Usuario no encontrado con el ID " + id });
+        res
+          .status(404)
+          .send({ message: "Usuario no encontrado con el ID " + id });
       else res.status(200).json(user);
     })
-    .catch(err => {
-      res.status(500).send({ message: "Error al recuperar el usuario con el ID " + id });
+    .catch((err) => {
+      res
+        .status(500)
+        .send({ message: "Error al recuperar el usuario con el ID " + id });
     });
 });
 
 // Ruta para eliminar un usuario por su ID
 router.delete("/users/:id", async (req, res) => {
   try {
-    const userId = parseInt(req.params.id);
-    const deletedUser = await modelUser.findOneAndDelete({ id: userId });
+    const id = req.params.id;
+    const deletedUser = await modelUser.findByIdAndDelete(id);
 
     if (!deletedUser) {
-      return res.status(404).send("Usuario no encontrado");
+      return res.status(404).json({ error: "Usuario no encontrado" });
     }
 
     res.status(200).json({ message: "Usuario eliminado correctamente" });
   } catch (error) {
     console.error("Error al eliminar el usuario:", error.message);
-    res.status(500).send("Error al eliminar el usuario");
+    res.status(500).json({ error: "Error al eliminar el usuario" });
   }
 });
 
