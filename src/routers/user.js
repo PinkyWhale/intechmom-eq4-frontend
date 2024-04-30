@@ -1,13 +1,64 @@
-import express from "express";
+const express = require("express");
 const router = express.Router();
-import modelUser from "../models/users";
-import { validateUser } from "../validations/userValidation";
+const modelUser = require("../models/users");
+const { validateEmail, validateUser } = require("../validations/userValidation");
 
+// Ruta para obtener todos los usuarios
+router.get("/users", async (req, res) => {
+  try {
+    const users = await modelUser.find();
+    res.status(200).json(users);
+  } catch (error) {
+    console.error("Error al obtener los usuarios:", error.message);
+    res.status(500).send("Error al obtener los usuarios");
+  }
+});
+
+// Ruta para obtener un usuario por su ID
+router.get("/users/:id", async (req, res) => {
+  try {
+    const userId = parseInt(req.params.id);
+    const user = await modelUser.findOne({ id: userId });
+
+    if (!user) {
+      return res.status(404).send("Usuario no encontrado");
+    }
+
+    res.status(200).json(user);
+  } catch (error) {
+    console.error("Error al obtener el usuario:", error.message);
+    res.status(500).send("Error al obtener el usuario");
+  }
+});
+
+// Ruta para eliminar un usuario por su ID
+router.delete("/users/:id", async (req, res) => {
+  try {
+    const userId = parseInt(req.params.id);
+    const deletedUser = await modelUser.findOneAndDelete({ id: userId });
+
+    if (!deletedUser) {
+      return res.status(404).send("Usuario no encontrado");
+    }
+
+    res.status(200).json({ message: "Usuario eliminado correctamente" });
+  } catch (error) {
+    console.error("Error al eliminar el usuario:", error.message);
+    res.status(500).send("Error al eliminar el usuario");
+  }
+});
+
+// Ruta para crear un nuevo usuario
 router.post("/users", async (req, res) => {
   try {
     const user = req.body;
     if (!validateUser(user)) {
       return res.status(400).json({ error: "Datos de usuario no válidos" });
+    }
+
+    // Aquí validamos el correo electrónico
+    if (!validateEmail(user.email)) {
+      return res.status(400).json({ error: "Correo electrónico inválido" });
     }
 
     const newUser = new modelUser(user);
@@ -19,6 +70,7 @@ router.post("/users", async (req, res) => {
   }
 });
 
+// Ruta para actualizar un usuario por su ID
 router.put("/users/:id", async (req, res) => {
   try {
     const userId = parseInt(req.params.id);
@@ -26,6 +78,11 @@ router.put("/users/:id", async (req, res) => {
 
     if (!validateUser(userData)) {
       return res.status(400).json({ error: "Datos de usuario no válidos" });
+    }
+
+    // Aquí validamos el correo electrónico
+    if (userData.email && !validateEmail(userData.email)) {
+      return res.status(400).json({ error: "Correo electrónico inválido" });
     }
 
     const updatedUser = await modelUser.findOneAndUpdate(
@@ -45,4 +102,4 @@ router.put("/users/:id", async (req, res) => {
   }
 });
 
-export default router;
+module.exports = router;
