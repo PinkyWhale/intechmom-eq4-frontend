@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const modelUser = require("../models/users");
-const { validateEmail, validateUser } = require("../validations/userValidation");
+const { validateEmail, validateUser } = require("../validations/post.user");
 
 // Ruta para obtener todos los usuarios
 router.get("/users", async (req, res) => {
