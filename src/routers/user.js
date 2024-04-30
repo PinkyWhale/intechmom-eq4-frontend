@@ -71,23 +71,19 @@ router.post("/users", async (req, res) => {
 // Ruta para actualizar un usuario por su ID
 router.put("/users/:id", async (req, res) => {
   try {
-    const userId = parseInt(req.params.id);
+    const id = req.params.id;
     const userData = req.body;
 
-    if (!validateUser(userData)) {
-      return res.status(400).json({ error: "Datos de usuario no válidos" });
+    if (!userData) {
+      return res
+        .status(400)
+        .json({ error: "¡Los datos a actualizar no pueden estar vacíos!" });
     }
 
-    // Aquí validamos el correo electrónico
-    if (userData.email && !validateEmail(userData.email)) {
-      return res.status(400).json({ error: "Correo electrónico inválido" });
-    }
-
-    const updatedUser = await modelUser.findOneAndUpdate(
-      { id: userId },
-      userData,
-      { new: true }
-    );
+    const updatedUser = await modelUser.findByIdAndUpdate(id, userData, {
+      new: true,
+      useFindAndModify: false,
+    });
 
     if (!updatedUser) {
       return res.status(404).send("Usuario no encontrado");
