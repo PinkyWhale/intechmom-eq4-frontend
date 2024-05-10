@@ -6,45 +6,109 @@
 <title>Elevator Pitch</title>
 <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-<form id="elevator-form">
-<h2>Perfil Comercial</h2>
-<label for="emprendedora">Nombre de la Emprendedora:</label>
-<input type="text" id="emprendedora" required maxlength="200">
-<label for="historia">Breve descripción como emprendedora:</label>
-<textarea id="historia" required maxlength="200"></textarea>
-<h3>Describe tu emprendimiento</h3>
-<label for="nombre-marca">Nombre de la Marca/Emprendimiento:</label>
-<input type="text" id="nombre-marca" required maxlength="200">
-<label for="que-vende">¿Qué vende?</label>
-<input type="text" id="que-vende" required maxlength="200">
-<label for="como-hace">¿Cómo hace lo que vende?</label>
-<input type="text" id="como-hace" required maxlength="200">
-<label for="por-quienes">¿Por quiénes lo hace?</label>
-<input type="text" id="por-quienes" required maxlength="200">
-<label for="producto-estrella">Producto Estrella</label>
-<input type="text" id="producto-estrella" required maxlength="200">
-<label for="descripcion-estrella">Descripción del Producto Estrella</label>
-<textarea id="descripcion-estrella" required maxlength="200"></textarea>
-<label for="personalidad-marca">Describir la personalidad de tu marca (Tono y Voz):</label>
-<select id="personalidad-marca">
-<option value="Comun">Comun</option>
-<option value="Inocente">Inocente</option>
-<option value="Creativo">Creativo</option>
-<option value="Bufon">Bufon</option>
-<option value="Heroico">Heroico</option>
-<option value="Sabio">Sabio</option>
-</select>
-<label for="facebook">Enlace a Facebook:</label>
-<input type="url" id="facebook">
-<label for="instagram">Enlace a Instagram:</label>
-<input type="url" id="instagram">
-<label for="google-maps">Enlace a Google Maps:</label>
-<input type="url" id="google-maps">
-<label for="tiktok">Enlace a TikTok:</label>
-<input type="url" id="tiktok">
-<button type="button" id="generate-btn" disabled>Generar Elevator Pitch</button>
-</form>
+<div class="container">
+    <form id="elevator-form">
+        <label for="emprendedora">Nombre de la emprendedora/representante/fundadora:</label>
+        <input type="text" id="emprendedora" required maxlength="200">
+    
+        <label for="historia">Describe brevemente la historia de tu emprendimiento/negocio/proyecto:</label>
+        <input type="text" id="historia" required maxlength="200">
+    
+        <label for="nombre-marca">Nombre de la marca/emprendimiento/negocio/proyecto:</label>
+        <input type="text" id="nombre-marca" required maxlength="200">
+    
+        <label for="que-vende">¿Qué vendes?</label>
+        <input type="text" id="que-vende" required maxlength="200">
+    
+        <label for="como-hace">¿Cómo haces lo que vendes?</label>
+        <input type="text" id="como-hace" required maxlength="200">
+    
+        <label for="por-quienes">¿Por quiénes lo haces?</label>
+        <input type="text" id="por-quienes" required maxlength="200">
+    
+        <label for="producto-estrella">¿Cuál es el producto principal/estrella/ más vendido?</label>
+        <input type="text" id="producto-estrella" required maxlength="200">
+    
+        <label for="descripcion-estrella">Descripción del principal/estrella/ más vendido</label>
+        <input type="text" id="descripcion-estrella" required maxlength="200">
+    
+        <label for="personalidad-marca">Describir la personalidad de tu marca (Tono y Voz):</label>
+    </form>
+
+    <div id="image-buttons">
+        <div class="button-row">
+            <div class="image-button">
+                <img src="imagen1.jpg" alt="Imagen 1">
+                <p>Exploradora</p>
+            </div>
+            <div class="image-button">
+                <img src="imagen2.jpg" alt="Imagen 2">
+                <p>Heroína</p>
+            </div>
+            <div class="image-button">
+                <img src="imagen3.jpg" alt="Imagen 3">
+                <p>Común</p>
+            </div>
+            <div class="image-button">
+                <img src="imagen4.jpg" alt="Imagen 4">
+                <p>Inocente</p>
+            </div>
+        </div>
+        
+        <div class="button-row">
+            <div class="image-button">
+                <img src="imagen5.jpg" alt="Imagen 5">
+                <p>Cuidadora</p>
+            </div>
+            <div class="image-button">
+                <img src="imagen6.jpg" alt="Imagen 6">
+                <p>Creativa</p>
+            </div>
+            <div class="image-button">
+                <img src="imagen7.jpg" alt="Imagen 7">
+                <p>Rebelde</p>
+            </div>
+            <div class="image-button">
+                <img src="imagen8.jpg" alt="Imagen 8">
+                <p>Gobernante</p>
+            </div>
+        </div>
+        
+        <div class="button-row">
+            <div class="image-button">
+                <img src="imagen9.jpg" alt="Imagen 9">
+                <p>Bufona</p>
+            </div>
+            <div class="image-button">
+                <img src="imagen10.jpg" alt="Imagen 10">
+                <p>Maga</p>
+            </div>
+            <div class="image-button">
+                <img src="imagen11.jpg" alt="Imagen 11">
+                <p>Sabia</p>
+            </div>
+            <div class="image-button">
+                <img src="imagen12.jpg" alt="Imagen 12">
+                <p>Amante</p>
+            </div>
+        </div>
+    </div>
+   
+    <form id="redes-sociales-form">
+        <label for="facebook">Enlace a Facebook.</label>
+        <input type="url" id="facebook">
+        <label for="instagram">Enlace a Instagram.</label>
+        <input type="url" id="instagram">
+        <label for="tiktok">Enlace a TikTok.</label>
+        <input type="url" id="tiktok">
+        <label for="google-maps">Enlace a Google Maps.</label>
+        <input type="url" id="google-maps">
+
+    <button id="generate-btn" type="submit">Generar</button> 
+    </form>
+</div>
 <script src="script.js"></script>
 </body>
 </html>
