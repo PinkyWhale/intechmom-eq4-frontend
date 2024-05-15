@@ -2,10 +2,11 @@
   "name": "node-express-mongodb",
   "version": "1.0.0",
   "description": "Node.js Restfull",
-  "main": "server.js",
+  "main": "src/utils/app.js",
+  "type": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "dev": "nodemon src/utils/app.js"
   },
   "keywords": [],
   "author": "Nath",
@@ -13,7 +14,9 @@
   "dependencies": {
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "mongoose": "^8.3.1"
+    "joi": "^17.13.1",
+    "mongoose": "^8.3.1",
+    "openai": "^4.47.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.0"
