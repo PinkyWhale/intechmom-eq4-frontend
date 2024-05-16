@@ -1,6 +1,9 @@
-# Documentación de Mi Aplicación Node.js con MongoDB y Variables de Entorno
+# Documentación de Mothership-back
 
-Esta es una guía de referencia para configurar y ejecutar una aplicación Node.js que utiliza una base de datos MongoDB y variables de entorno para la configuración.
+## Notas Adicionales 🚩🚩🚩
+
+- Mejora de la conexión del mock en generar respuesta a la solicitud POST.
+- Actualmente, solo está funcionando la primera pantalla / sección llamada "ecommerce"
 
 ## Requisitos Previos
 
@@ -56,16 +59,48 @@ Para iniciar la aplicación, ejecuta el siguiente comando en el directorio raíz
 npm run dev
 ```
 
-La aplicación se ejecutará en el puerto especificado en el archivo .env. Abre tu navegador y ve a http://localhost:3001 (o al puerto que hayas especificado) para ver la aplicación en funcionamiento.
+La aplicación se ejecutará en el puerto especificado en el archivo .env. Abre tu navegador y ve a http://localhost:30000
 
 ## Estructura de Carpetas
 
 ```
-   /config: Contiene la configuración de la base de datos y otras configuraciones de la aplicación.
-   /model: Contiene modelos de datos para interactuar con la base de datos.
-   /app.js: Archivo principal de la aplicación.
+└── 📁mothership-back
+    └── .env
+    └── .env.example
+    └── .gitignore
+    └── package-lock.json
+    └── package.json
+    └── README.md
+    └── requests.http
+    └── 📁src
+        └── 📁api
+            └── 📁controllers
+                └── 📁Campaign
+                    └── delete.js
+                    └── get.js
+                    └── patch.js
+                    └── post.js
+                └── 📁ecommerce
+                    └── createElevatorPitch.js
+                    └── mockElevatorResponse.js
+            └── 📁docs
+                └── 📁api
+                    ├── examples
+            └── 📁routes
+                └── user.router.js
+            └── 📁utils
+                └── helpers.js
+                └── index.js
+            └── 📁validators
+                └── post.campaign.js
+                └── post.elevatorPitch.js
+        └── 📁config
+            └── db.config.js
+            └── index.js
+        └── 📁models
+            └── campaign.js
+            └── elevator-pitch.js
+            └── users.model.js
+        └── 📁utils
+            └── app.js
 ```
-
-## Video de funcionamiento
-
-[Ver video aqui](https://drive.google.com/file/d/1djDm9fmBFXO14qOnmlvQMkH9ZJht8Xi9/view?usp=sharing)
