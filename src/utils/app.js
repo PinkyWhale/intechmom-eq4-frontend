@@ -2,7 +2,7 @@ const express = require("express");
 const { config } = require("dotenv");
 const { port } = require("../config/index.js");
 const dbConnection = require("../config/db.config.js");
-const createElevatorPitch = require("../api/routes/ecommerce/createElevatorPitch.js");
+const routes = require("../api/routes/user.router");
 
 config(); // Carga las variables de entorno desde el archivo .env
 
@@ -14,7 +14,7 @@ app.get("/", (_req, res) => {
   return res.status(200).json("El proyecto funciona correctamente").end();
 });
 
-app.use("/api", createElevatorPitch);
+app.use("/api", routes);
 
 app.listen(port, (error) => {
   if (error) {

@@ -1,0 +1,24 @@
+GET https://api.example.com/users
+Content-Type: application/json
+
+###
+
+POST http://127.0.0.1:3000/ecommerce
+Content-Type: application/json
+
+{
+    "UserEntreprenuer": "Lucia Pardo",
+    "story": "Lucía, líder apasionada con más de 30 años de experiencia, enfrenta desafíos con determinación y perseverancia. Inspirada por la naturaleza, es un faro de esperanza para mujeres emprendedoras.",
+    "brandName": "Achiras del Sagú",
+    "whatSell": "Ofrecemos experiencias gastronómicas únicas con productos de sagú. Cada bocado es un viaje de sabores y texturas por los paisajes colombianos, uniendo tradición e innovación.",
+    "howSell": "Nuestros productos artesanales reflejan pasión. Valoramos la calidad de las materias primas y empoderamos a mujeres, generando oportunidades de crecimiento.",
+    "audienceTarget": "Nuestras Achiras son ideales para quienes buscan un snack saludable y sin gluten. Representan la diversidad gastronómica de Colombia, un regalo único para disfrutar en cualquier lugar.",
+    "starProduct": "Achiras de Sagú rellenas de bocadillo",
+    "starProductDescription": "Achiras: Un viaje culinario a la tradición colombiana sin gluten. Snack de sagú, crujiente y sabroso. Más que un snack, un tesoro cultural. Saludable, ideal para intolerantes al gluten. Lleva un pedacito de Colombia contigo.",
+    "brandPersonality": "creativo",
+    "urlFacebook": "",
+    "urlInstagram": "https://www.instagram.com/ttrippy_shi/?next=%2F",
+    "urlTiktokr": "",
+    "urlGoogleMaps": "",
+    "UserEntreprenuer": "",
+}

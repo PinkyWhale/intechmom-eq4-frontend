@@ -72,7 +72,9 @@ const createEcommerce = async (req, res) => {
   }
 };
 
-module.exports = createEcommerce;
+module.exports = {
+  createEcommerce,
+};
 
 async function generateElevator(createElevatorPitch) {
   try {
