@@ -17,7 +17,7 @@ Content-Type: application/json
     "starProductDescription": "Achiras: Un viaje culinario a la tradición colombiana sin gluten. Snack de sagú, crujiente y sabroso. Más que un snack, un tesoro cultural. Saludable, ideal para intolerantes al gluten. Lleva un pedacito de Colombia contigo.",
     "brandPersonality": "creativo",
     "urlFacebook": "",
-    "urlInstagram": "https://www.instagram.com/ttrippy_shi/?next=%2F",
+    "urlInstagram": "https://www.instagram.com/asoemaf_achiras?igsh=MWtraHE3enJxeTV4OQ==",
     "urlTiktokr": "",
     "urlGoogleMaps": "",
     "UserEntreprenuer": "",

@@ -1,6 +1,9 @@
-import OpenAI from "openai";
-import User from "../../models/elevator-pitch.js";
-import { openAiApiKey } from "../../.config/index.js";
+const OpenAI = require("openai");
+const Ecommerce = require("../../../models/elevator-pitch.js");
+const { config } = require("dotenv");
+const generateMockResponse = require("./mockElevatorResponse.js");
+
+config(); // Carga las variables de entorno desde el archivo .env
 
 const archetypes = {
   wise: {
@@ -58,84 +61,73 @@ const archetypes = {
   // Mago: Quiero que el texto me haga sentir que todo se resuelve de forma sencilla. (descripción arquetipo)
   // Palabras clave: Libertad, magia, facilidad, geniosidad
 };
-// FUNCION DE SERVERLES
-exports.handler = async (event) => {
+
+const createEcommerce = async (req, res) => {
   try {
-    const requestBody = JSON.parse(event.body);
-    const mongoResponse = await User.create(requestBody);
-
-    const responseAi = await generateElevator(requestBody);
-
-    return {
-      statusCode: 200,
-      body: JSON.stringify({
-        mongoResponse,
-        responseAi,
-      }),
-    };
+    const mongoResponse = await Ecommerce.create(req.body);
+    const responseAi = await generateElevator(req.body);
+    res.status(201).json({ mongoResponse, responseAi });
   } catch (error) {
     console.log(error);
-    return {
-      statusCode: 400,
-      body: JSON.stringify({ message: "hay un error!?" }),
-    };
+    res.status(400).json({ message: "Error al crear el Elevator Pitch" });
   }
 };
 
+module.exports = {
+  createEcommerce,
+};
+
 async function generateElevator(createElevatorPitch) {
-  const openAiInstance = new OpenAI({ apiKey: openAiApiKey });
-  const {
-    UserEntreprenuer, // se trae campo de la bd nameEntreprenuer
-    story,
-    branName,
-    whatSell,
-    howSell,
-    audienceTarget,
-    starProduct,
-    starProductDescription, //ANALIZAR PARA DATA ANALIS
-    brandPersonality,
-    urlFacebook,
-    urlInstagram,
-    urlTiktok,
-    urlGoogleMaps,
-  } = createElevatorPitch;
+  try {
+    const openAiInstance = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+    const {
+      UserEntreprenuer,
+      story,
+      branName,
+      whatSell,
+      howSell,
+      audienceTarget,
+      starProduct,
+      urlFacebook,
+      urlInstagram,
+      urlTiktok,
+      urlGoogleMaps,
+      brandPersonality,
+    } = createElevatorPitch;
 
-  // si algun dato es null el texto no se envia
-  const redesEmprendimiento = (() => {
-    const redes = [];
-    if (urlFacebook) redes.push(`Facebook: ${urlFacebook}`);
-    if (urlInstagram) redes.push(`Instagram: ${urlInstagram}`);
-    if (urlTiktok) redes.push(`TikTok: ${urlTiktok}`);
-    if (urlGoogleMaps) redes.push(`Google Maps: ${urlGoogleMaps}`);
-    return redes.join(", ");
-  })();
+    const redesEmprendimiento = (() => {
+      const redes = [];
+      if (urlFacebook) redes.push(`Facebook: ${urlFacebook}`);
+      if (urlInstagram) redes.push(`Instagram: ${urlInstagram}`);
+      if (urlTiktok) redes.push(`TikTok: ${urlTiktok}`);
+      if (urlGoogleMaps) redes.push(`Google Maps: ${urlGoogleMaps}`);
+      return redes.join(", ");
+    })();
 
-  // Promt
-  const mensajeUsuario = `Redacta un Elevator Pich de mi Marca la cual se llama ${branName} utilizando la 
-    siguiente informacion del circulo de oro: 
-    ${whatSell}, ${howSell}, ${audienceTarget}.
+    const mensajeUsuario = `Redacta un Elevator Pich de mi Marca la cual se llama ${branName} utilizando la siguiente informacion del circulo de oro: ${whatSell}, ${howSell}, ${audienceTarget}.
 
-    Mi perfil como emprendedora es el siguiente:
-    ${story}.
+Mi perfil como emprendedora es el siguiente: ${story}.
     
-    mi nombre es ${UserEntreprenuer} y mi producto estrella es ${starProduct}. 
-    ${
+mi nombre es ${UserEntreprenuer} y mi producto estrella es ${starProduct}. ${
       redesEmprendimiento
         ? `Mis redes del emprendimiento son: ${redesEmprendimiento}.`
         : ""
     }
 
-    Por favor utiliza una Voz y tono para el Elevator Pich de forma ${
+Por favor utiliza una Voz y tono para el Elevator Pich de forma ${
       archetypes[brandPersonality].keywords
-    }.
-    `;
+    }.`;
 
-  const chatCompletion = await openAiInstance.chat.completions.create({
-    messages: [{ role: "user", content: mensajeUsuario }],
-    model: "gpt-3.5-turbo",
-    // temperature: 0.7, ?? se necesita
-    // max_tokens: 750 ??? se necesita
-  });
+    const chatCompletion = await openAiInstance.chat.completions.create({
+      messages: [{ role: "user", content: mensajeUsuario }],
+      model: "gpt-3.5-turbo",
+      // temperature: 0.7, ?? se necesita
+      // max_tokens: 750 ??? se necesita
+    });
 
-  return chatCompletion.choices[0].message.content;
+    return chatCompletion.choices[0].message.content;
+  } catch (error) {
+    console.error("Error en la generación del Elevator Pitch:", error);
+    throw error; // Lanza el error para manejarlo en createEcommerce
+  }
 }
