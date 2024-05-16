@@ -1,9 +1,9 @@
-import User from "../../models/users.js";
+import Ecommerce from "../../models/elevator-pitch";
 
-const getUserBy = async (filter) => {
-  const personajeEncontrado = await User.find(filter);
+const getEcommerceBy = async (filter) => {
+  const personajeEncontrado = await Ecommerce.find(filter);
   console.log(personajeEncontrado);
   return personajeEncontrado;
 };
 
-export default getUserBy;
+export default getEcommerceBy;

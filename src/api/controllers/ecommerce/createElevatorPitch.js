@@ -1,4 +1,4 @@
-const OpenAI = require("openai");
+// const OpenAI = require("openai");
 const Ecommerce = require("../../../models/elevator-pitch.js");
 const { config } = require("dotenv");
 const generateMockResponse = require("./mockElevatorResponse.js");
@@ -77,9 +77,9 @@ module.exports = {
   createEcommerce,
 };
 
-async function generateElevator(createElevatorPitch) {
+async function generateElevator(createElevatorPitchData) {
+  // Cambio de nombre de argumento
   try {
-    const openAiInstance = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
     const {
       UserEntreprenuer,
       story,
@@ -93,7 +93,7 @@ async function generateElevator(createElevatorPitch) {
       urlTiktok,
       urlGoogleMaps,
       brandPersonality,
-    } = createElevatorPitch;
+    } = createElevatorPitchData; // Cambio de nombre del objeto
 
     const redesEmprendimiento = (() => {
       const redes = [];
@@ -118,16 +118,21 @@ Por favor utiliza una Voz y tono para el Elevator Pich de forma ${
       archetypes[brandPersonality].keywords
     }.`;
 
-    const chatCompletion = await openAiInstance.chat.completions.create({
-      messages: [{ role: "user", content: mensajeUsuario }],
-      model: "gpt-3.5-turbo",
-      // temperature: 0.7, ?? se necesita
-      // max_tokens: 750 ??? se necesita
-    });
+    // Esta parte que llama a la API de OpenAI
 
-    return chatCompletion.choices[0].message.content;
+    // const openAiInstance = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+    // const chatCompletion = await openAiInstance.chat.completions.create({
+    //   messages: [{ role: "user", content: mensajeUsuario }],
+    //   model: "gpt-3.5-turbo",
+    //   temperature: 0.7, // se necesita
+    //   max_tokens: 750 // se necesita
+    // });
+
+    // Utiliza la función para generar el mock de respuesta
+    const mockResponse = await generateMockResponse();
+    return mockResponse.choices[0].message.content;
   } catch (error) {
     console.error("Error en la generación del Elevator Pitch:", error);
-    throw error; // Lanza el error para manejarlo en createEcommerce
+    throw error;
   }
 }

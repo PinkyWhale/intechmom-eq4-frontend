@@ -26,7 +26,7 @@ const createElevatorSchema = Joi.object({
   ResponseAi: Joi.string().required(),
 });
 
-const validateCreation = async (request, response, next) => {
+const validateCreationElevator = async (request, response, next) => {
   try {
     await createElevatorSchema.validateAsync(request.body);
     next();
@@ -35,4 +35,4 @@ const validateCreation = async (request, response, next) => {
   }
 };
 
-module.exports = { validateCreation };
+module.exports = { validateCreationElevator };

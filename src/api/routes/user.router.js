@@ -1,11 +1,13 @@
 const { Router } = require("express");
 const router = Router();
 
-const { validateCreation } = require("../validators/post.elevatorPitch.js");
 const {
-  createElevatorPitch,
+  validateCreationElevator,
+} = require("../validators/post.elevatorPitch.js");
+const {
+  createEcommerce,
 } = require("../controllers/ecommerce/createElevatorPitch.js");
 
-router.post("/ecommerce", validateCreation, createElevatorPitch);
+router.post("/ecommerce", validateCreationElevator, createEcommerce);
 
 module.exports = router;
