@@ -39,7 +39,7 @@ const ecommerceSchema = new Schema({
   },
   urlFacebook: {
     type: String,
-    required: true,
+    required: false, // Cambiado a opcional
   },
   urlInstagram: {
     type: String,
@@ -47,11 +47,11 @@ const ecommerceSchema = new Schema({
   },
   urlTiktok: {
     type: String,
-    required: true,
+    required: false, // Cambiado a opcional
   },
   urlGoogleMaps: {
     type: String,
-    required: true,
+    required: false, // Cambiado a opcional
   },
   responseAI: {
     type: String,
@@ -59,4 +59,6 @@ const ecommerceSchema = new Schema({
   },
 });
 
-module.exports = model("Ecommerce", ecommerceSchema);
+const Ecommerce = model("Ecommerce", ecommerceSchema);
+
+module.exports = Ecommerce;

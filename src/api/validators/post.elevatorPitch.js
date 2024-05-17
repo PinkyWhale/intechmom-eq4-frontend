@@ -3,7 +3,7 @@ const Joi = require("joi");
 const createElevatorSchema = Joi.object({
   UserEntreprenuer: Joi.string().required().min(3).max(200),
   story: Joi.string().required().min(3).max(200),
-  branName: Joi.string().required().min(3).max(200),
+  brandName: Joi.string().required().min(3).max(200),
   whatSell: Joi.string().required().min(3).max(200),
   howSell: Joi.string().required().min(3).max(200),
   audienceTarget: Joi.string().required(),
@@ -12,18 +12,20 @@ const createElevatorSchema = Joi.object({
   brandPersonality: Joi.string().required().min(3).max(200),
   urlFacebook: Joi.string()
     .uri()
-    .pattern(/^https:\/\//),
+    .pattern(/^https:\/\//)
+    .optional(),
   urlInstagram: Joi.string()
     .uri()
     .pattern(/^https:\/\//)
     .required(),
   urlTiktok: Joi.string()
     .uri()
-    .pattern(/^https:\/\//),
+    .pattern(/^https:\/\//)
+    .optional(),
   urlGoogleMaps: Joi.string()
     .uri()
-    .pattern(/^https:\/\//),
-  ResponseAi: Joi.string().required(),
+    .pattern(/^https:\/\//)
+    .optional(),
 });
 
 const validateCreationElevator = async (request, response, next) => {
@@ -31,7 +33,7 @@ const validateCreationElevator = async (request, response, next) => {
     await createElevatorSchema.validateAsync(request.body);
     next();
   } catch (error) {
-    response.send(error);
+    response.status(400).send(error);
   }
 };
 

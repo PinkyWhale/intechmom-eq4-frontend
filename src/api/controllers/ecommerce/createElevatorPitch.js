@@ -1,7 +1,7 @@
-// const OpenAI = require("openai");
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 const Ecommerce = require("../../../models/elevator-pitch.js");
 const { config } = require("dotenv");
-const generateMockResponse = require("./mockElevatorResponse.js");
+//const generateMockResponse = require("./mockElevat../../../models/elevator-pitch.jsorResponse.js");
 
 config(); // Carga las variables de entorno desde el archivo .env
 
@@ -62,9 +62,76 @@ const archetypes = {
   // Palabras clave: Libertad, magia, facilidad, geniosidad
 };
 
+const generateElevator = async (createElevatorPitchData) => {
+  const genAI = new GoogleGenerativeAI({ apiKey: process.env.API_KEY });
+  const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+  const {
+    // Extraer los datos necesarios del objeto createElevatorPitchData
+    UserEntreprenuer,
+    story,
+    brandName,
+    whatSell,
+    howSell,
+    audienceTarget,
+    starProduct,
+    urlFacebook,
+    urlInstagram,
+    urlTiktok,
+    urlGoogleMaps,
+    brandPersonality,
+  } = createElevatorPitchData;
+
+  // Generar la cadena de texto para las redes sociales del emprendimiento
+  const redesEmprendimiento = (() => {
+    const redes = [];
+    if (urlFacebook) redes.push(`Facebook: ${urlFacebook}`);
+    if (urlInstagram) redes.push(`Instagram: ${urlInstagram}`);
+    if (urlTiktok) redes.push(`TikTok: ${urlTiktok}`);
+    if (urlGoogleMaps) redes.push(`Google Maps: ${urlGoogleMaps}`);
+    return redes.join(", ");
+  })();
+
+  const archetype = archetypes[brandPersonality];
+  const archetypeKeywords = archetype
+    ? archetype.keywords
+    : "Palabras clave no definidas";
+
+  // Crear el mensaje para la API de Gemini
+  const prompt = `Redacta un Elevator Pich de mi Marca la cual se llama ${brandName} utilizando la siguiente informacion del circulo de oro: ${whatSell}, ${howSell}, ${audienceTarget}.
+  
+  Mi perfil como emprendedora es el siguiente: ${story}.
+  
+  Mi nombre es ${UserEntreprenuer} y mi producto estrella es ${starProduct}. ${
+    redesEmprendimiento
+      ? `Mis redes del emprendimiento son: ${redesEmprendimiento}.`
+      : ""
+  }
+  
+  Por favor utiliza una Voz y tono para el Elevator Pich de forma ${archetypeKeywords}.`;
+
+  // Esta parte que llama a la API de OpenAI
+
+  // const openAiInstance = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  // const chatCompletion = await openAiInstance.chat.completions.create({
+  //   messages: [{ role: "user", content: mensajeUsuario }],
+  //   model: "gpt-3.5-turbo",
+  //   temperature: 0.7, // se necesita
+  //   max_tokens: 750 // se necesita
+  // });
+
+  // Llamar a la API de Gemini y obtener la respuesta
+  const result = await model.generateContent(prompt);
+  const response = result.response;
+  const text = await response.text();
+
+  return text; // Retornar el texto generado por la API
+};
+
 const createEcommerce = async (req, res) => {
   try {
+    // Crear un nuevo documento en MongoDB con los datos del cuerpo de la solicitud
     const mongoResponse = await Ecommerce.create(req.body);
+    // Generar el Elevator Pitch utilizando la API de Gemini
     const responseAi = await generateElevator(req.body);
     res.status(201).json({ mongoResponse, responseAi });
   } catch (error) {
@@ -76,63 +143,3 @@ const createEcommerce = async (req, res) => {
 module.exports = {
   createEcommerce,
 };
-
-async function generateElevator(createElevatorPitchData) {
-  // Cambio de nombre de argumento
-  try {
-    const {
-      UserEntreprenuer,
-      story,
-      branName,
-      whatSell,
-      howSell,
-      audienceTarget,
-      starProduct,
-      urlFacebook,
-      urlInstagram,
-      urlTiktok,
-      urlGoogleMaps,
-      brandPersonality,
-    } = createElevatorPitchData; // Cambio de nombre del objeto
-
-    const redesEmprendimiento = (() => {
-      const redes = [];
-      if (urlFacebook) redes.push(`Facebook: ${urlFacebook}`);
-      if (urlInstagram) redes.push(`Instagram: ${urlInstagram}`);
-      if (urlTiktok) redes.push(`TikTok: ${urlTiktok}`);
-      if (urlGoogleMaps) redes.push(`Google Maps: ${urlGoogleMaps}`);
-      return redes.join(", ");
-    })();
-
-    const mensajeUsuario = `Redacta un Elevator Pich de mi Marca la cual se llama ${branName} utilizando la siguiente informacion del circulo de oro: ${whatSell}, ${howSell}, ${audienceTarget}.
-
-Mi perfil como emprendedora es el siguiente: ${story}.
-    
-mi nombre es ${UserEntreprenuer} y mi producto estrella es ${starProduct}. ${
-      redesEmprendimiento
-        ? `Mis redes del emprendimiento son: ${redesEmprendimiento}.`
-        : ""
-    }
-
-Por favor utiliza una Voz y tono para el Elevator Pich de forma ${
-      archetypes[brandPersonality].keywords
-    }.`;
-
-    // Esta parte que llama a la API de OpenAI
-
-    // const openAiInstance = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-    // const chatCompletion = await openAiInstance.chat.completions.create({
-    //   messages: [{ role: "user", content: mensajeUsuario }],
-    //   model: "gpt-3.5-turbo",
-    //   temperature: 0.7, // se necesita
-    //   max_tokens: 750 // se necesita
-    // });
-
-    // Utiliza la función para generar el mock de respuesta
-    const mockResponse = await generateMockResponse();
-    return mockResponse.choices[0].message.content;
-  } catch (error) {
-    console.error("Error en la generación del Elevator Pitch:", error);
-    throw error;
-  }
-}

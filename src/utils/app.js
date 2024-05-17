@@ -1,12 +1,11 @@
 const express = require("express");
-const { config } = require("dotenv");
-const { port } = require("../config/index.js");
+const { port } = require("../config");
 const dbConnection = require("../config/db.config.js");
 const routes = require("../api/routes/user.router");
 
-config(); // Carga las variables de entorno desde el archivo .env
-
 const app = express();
+
+app.use(express.json());
 
 dbConnection(); // Conecta con la base de datos MongoDB
 
