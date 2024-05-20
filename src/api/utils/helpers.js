@@ -1,4 +1,4 @@
-import Ecommerce from "../../models/elevator-pitch";
+const Ecommerce = require("../../models/elevator-pitch");
 
 const getEcommerceBy = async (filter) => {
   const personajeEncontrado = await Ecommerce.find(filter);
@@ -6,4 +6,4 @@ const getEcommerceBy = async (filter) => {
   return personajeEncontrado;
 };
 
-export default getEcommerceBy;
+module.exports = getEcommerceBy;

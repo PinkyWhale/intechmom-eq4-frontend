@@ -39,7 +39,7 @@ const ecommerceSchema = new Schema({
   },
   urlFacebook: {
     type: String,
-    required: false, // Cambiado a opcional
+    required: false,
   },
   urlInstagram: {
     type: String,
@@ -47,11 +47,11 @@ const ecommerceSchema = new Schema({
   },
   urlTiktok: {
     type: String,
-    required: false, // Cambiado a opcional
+    required: false,
   },
   urlGoogleMaps: {
     type: String,
-    required: false, // Cambiado a opcional
+    required: false,
   },
   responseAI: {
     type: String,

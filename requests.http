@@ -1,10 +1,10 @@
 ### GET
-GET http://127.0.0.1:3000/api
+GET http://127.0.0.1:3000/api/ecommerce
 Content-Type: application/json
 
 ### GET:ID
 ### POST ECOMMERCE
-POST http://127.0.0.1:3000/ecommerce
+POST http://127.0.0.1:3000/api/ecommerce
 Content-Type: application/json
 
 {
@@ -16,7 +16,7 @@ Content-Type: application/json
     "audienceTarget": "Nuestras Achiras son ideales para quienes buscan un snack saludable y sin gluten. Representan la diversidad gastronómica de Colombia, un regalo único para disfrutar en cualquier lugar.",
     "starProduct": "Achiras de Sagú rellenas de bocadillo",
     "starProductDescription": "Achiras: Un viaje culinario a la tradición colombiana sin gluten. Snack de sagú, crujiente y sabroso. Más que un snack, un tesoro cultural. Saludable, ideal para intolerantes al gluten. Lleva un pedacito de Colombia contigo.",
-    "brandPersonality": "creativo",
+    "brandPersonality": "wise",
     "urlFacebook": "",
     "urlInstagram": "https://www.instagram.com/asoemaf_achiras?igsh=MWtraHE3enJxeTV4OQ==",
     "urlTiktokr": "",
