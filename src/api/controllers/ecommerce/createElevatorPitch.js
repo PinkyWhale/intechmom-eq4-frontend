@@ -42,7 +42,7 @@ const archetypes = {
   },
 };
 
-async function generateElevator(createElevatorPitchData) {
+async function generateElevator(ElevatorPitchConfigs) {
   const {
     UserEntreprenuer,
     story,
@@ -56,7 +56,7 @@ async function generateElevator(createElevatorPitchData) {
     urlTiktok,
     urlGoogleMaps,
     brandPersonality,
-  } = createElevatorPitchData;
+  } = ElevatorPitchConfigs;
 
   console.log("Brand Personality: ", brandPersonality);
   console.log("Archetypes: ", archetypes);
@@ -76,9 +76,10 @@ async function generateElevator(createElevatorPitchData) {
   if (urlTiktok) redesText += `TikTok: ${urlTiktok}\n`;
   if (urlGoogleMaps) redesText += `Google Maps: ${urlGoogleMaps}\n`;
 
+  // Crear una instancia del modelo de generación de LangChain
   const model = new ChatGoogleGenerativeAI({
     apiKey: process.env.GEMINI_API_KEY,
-    model: "gemini-1.5-pro-latest",
+    model: "gemini-pro",
     maxOutputTokens: 2048,
     safetySettings: [
       {
@@ -88,7 +89,7 @@ async function generateElevator(createElevatorPitchData) {
     ],
   });
 
-  const res = await model.invoke([
+  const createEcommerce = await model.invoke([
     [
       "human",
       `Redacta un Elevator Pitch de mi Marca la cual se llama ${brandName} utilizando la siguiente información del círculo de oro: ${whatSell}, ${howSell}, ${audienceTarget}.
@@ -105,10 +106,16 @@ async function generateElevator(createElevatorPitchData) {
   ]);
 }
 
+// Función para crear un registro de ecommerce
 const createEcommerce = async (req, res) => {
   try {
+    // Validar los datos de entrada aquí, si es necesario
+
+    // Guardar la solicitud en la base de datos MongoDB
     const mongoResponse = await Ecommerce.create(req.body);
+    // Generar una respuesta usando el modelo de LangChain
     const responseAi = await generateElevator(req.body);
+    // Enviar una respuesta con los resultados
     res.status(201).json({ mongoResponse, responseAi });
   } catch (error) {
     console.error("Error detallado:", error);
