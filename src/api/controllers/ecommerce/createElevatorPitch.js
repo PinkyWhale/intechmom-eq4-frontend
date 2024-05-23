@@ -1,6 +1,5 @@
 const { ChatGoogleGenerativeAI } = require("@langchain/google-genai");
-const { ChatPromptTemplate } = require("@langchain/core/prompts");
-const { StringOutputParser } = require("@langchain/core/output_parsers");
+const { HarmBlockThreshold, HarmCategory } = require("@google/generative-ai");
 const { config } = require("dotenv");
 const Ecommerce = require("../../../models/elevator-pitch.js");
 
@@ -77,7 +76,19 @@ async function generateElevator(createElevatorPitchData) {
   if (urlTiktok) redesText += `TikTok: ${urlTiktok}\n`;
   if (urlGoogleMaps) redesText += `Google Maps: ${urlGoogleMaps}\n`;
 
-  const promptTemplate = ChatPromptTemplate.fromMessages([
+  const model = new ChatGoogleGenerativeAI({
+    apiKey: process.env.GEMINI_API_KEY,
+    model: "gemini-1.5-pro-latest",
+    maxOutputTokens: 2048,
+    safetySettings: [
+      {
+        category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+        threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
+      },
+    ],
+  });
+
+  const res = await model.invoke([
     [
       "human",
       `Redacta un Elevator Pitch de mi Marca la cual se llama ${brandName} utilizando la siguiente información del círculo de oro: ${whatSell}, ${howSell}, ${audienceTarget}.
@@ -92,32 +103,6 @@ async function generateElevator(createElevatorPitchData) {
       Por favor utiliza una voz y tono para el Elevator Pitch de forma ${archetype.keywords}.`,
     ],
   ]);
-
-  const model = new ChatGoogleGenerativeAI({
-    apiKey: process.env.GEMINI_API_KEY,
-    model: "gemini-pro",
-    maxOutputTokens: 2048,
-    safetySettings: [
-      {
-        category: "harassment",
-        threshold: "blockLowAndAbove",
-      },
-    ],
-  });
-
-  const outputParser = new StringOutputParser();
-  const chain = promptTemplate.pipe(model).pipe(outputParser);
-
-  try {
-    const response = await chain.invoke({});
-    return response;
-  } catch (error) {
-    console.error("Error generating elevator pitch:", error);
-    if (error.response) {
-      console.error("Response data:", error.response.data);
-    }
-    throw new Error("Error generating elevator pitch");
-  }
 }
 
 const createEcommerce = async (req, res) => {
@@ -126,7 +111,7 @@ const createEcommerce = async (req, res) => {
     const responseAi = await generateElevator(req.body);
     res.status(201).json({ mongoResponse, responseAi });
   } catch (error) {
-    console.error("Detailed error information:", error);
+    console.error("Error detallado:", error);
     res.status(400).json({
       message: "Error al crear el Elevator Pitch",
       error: error.message,
