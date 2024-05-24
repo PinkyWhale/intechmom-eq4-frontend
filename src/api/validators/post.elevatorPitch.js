@@ -26,6 +26,10 @@ const createElevatorSchema = Joi.object({
     .uri()
     .pattern(/^https:\/\//)
     .optional(),
+  urlYouWeb: Joi.string()
+    .uri()
+    .pattern(/^https:\/\//)
+    .optional(),
 });
 
 const validateCreationElevator = async (request, response, next) => {

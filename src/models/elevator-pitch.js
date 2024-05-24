@@ -57,6 +57,10 @@ const ecommerceSchema = new Schema({
     type: String,
     required: false,
   },
+  urlYouWeb: {
+    type: String,
+    required: false,
+  },
 });
 
 const Ecommerce = model("Ecommerce", ecommerceSchema);

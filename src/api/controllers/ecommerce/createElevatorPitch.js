@@ -55,6 +55,7 @@ async function generateElevator(ElevatorPitchConfigs) {
     urlInstagram,
     urlTiktok,
     urlGoogleMaps,
+    urlYouWeb,
     brandPersonality,
   } = ElevatorPitchConfigs;
 
@@ -75,6 +76,7 @@ async function generateElevator(ElevatorPitchConfigs) {
   if (urlInstagram) redesText += `Instagram: ${urlInstagram}\n`;
   if (urlTiktok) redesText += `TikTok: ${urlTiktok}\n`;
   if (urlGoogleMaps) redesText += `Google Maps: ${urlGoogleMaps}\n`;
+  if (urlYouWeb) redesText += `Your Web: ${urlYouWeb}\n`;
 
   // Crear una instancia del modelo de generación de LangChain
   const model = new ChatGoogleGenerativeAI({
