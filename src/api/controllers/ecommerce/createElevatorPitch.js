@@ -2,6 +2,7 @@ const { ChatGoogleGenerativeAI } = require("@langchain/google-genai");
 const { HarmBlockThreshold, HarmCategory } = require("@google/generative-ai");
 const { config } = require("dotenv");
 const Ecommerce = require("../../../models/elevator-pitch.js");
+const mockGenerateElevatorResponse = require("../../../../mocks/generateElevatorMock.js");
 
 config(); // Carga las variables de entorno desde el archivo .env
 
@@ -78,34 +79,35 @@ async function generateElevator(ElevatorPitchConfigs) {
   if (urlGoogleMaps) redesText += `Google Maps: ${urlGoogleMaps}\n`;
   if (urlYouWeb) redesText += `Your Web: ${urlYouWeb}\n`;
 
-  // Crear una instancia del modelo de generación de LangChain
-  const model = new ChatGoogleGenerativeAI({
-    apiKey: process.env.GEMINI_API_KEY,
-    model: "gemini-pro",
-    maxOutputTokens: 2048,
-    safetySettings: [
-      {
-        category: HarmCategory.HARM_CATEGORY_HARASSMENT,
-        threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
-      },
-    ],
-  });
+  // Aquí es donde normalmente harías la llamada al modelo de generación de LangChain
+  // const model = new ChatGoogleGenerativeAI({
+  //   apiKey: process.env.GEMINI_API_KEY,
+  //   model: "gemini-pro",
+  //   maxOutputTokens: 2048,
+  //   safetySettings: [
+  //     {
+  //       category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+  //       threshold: HarmBlockThreshold.BLOCK_LOW_AND_ABOVE,
+  //     },
+  //   ],
+  // });
 
-  const createEcommerce = await model.invoke([
-    [
-      "human",
-      `Redacta un Elevator Pitch de mi Marca la cual se llama ${brandName} utilizando la siguiente información del círculo de oro: ${whatSell}, ${howSell}, ${audienceTarget}.
-      
-      Mi perfil como emprendedora es el siguiente: ${story}.
-      
-      Mi nombre es ${UserEntreprenuer} y mi producto estrella es ${starProduct}. 
-      
-      Mis redes del emprendimiento son:
-      ${redesText}
-      
-      Por favor utiliza una voz y tono para el Elevator Pitch de forma ${archetype.keywords}.`,
-    ],
-  ]);
+  // const createEcommerce = await model.invoke([
+  //   [
+  //     "human",
+  //     `Redacta un Elevator Pitch de mi Marca la cual se llama ${brandName} utilizando la siguiente información del círculo de oro: ${whatSell}, ${howSell}, ${audienceTarget}.
+  //     Mi perfil como emprendedora es el siguiente: ${story}.
+  //     Mi nombre es ${UserEntreprenuer} y mi producto estrella es ${starProduct}.
+  //     Mis redes del emprendimiento son:
+  //     ${redesText}
+  //     Por favor utiliza una voz y tono para el Elevator Pitch de forma ${archetype.keywords}.`,
+  //   ],
+  // ]);
+
+  // En su lugar, utilizamos el mock
+  const createEcommerce = mockGenerateElevatorResponse;
+
+  return createEcommerce;
 }
 
 // Función para crear un registro de ecommerce
