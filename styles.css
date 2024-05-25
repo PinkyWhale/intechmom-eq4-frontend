@@ -1,50 +1,67 @@
-/* Estilos generales */
+/* Estilos generales para el cuerpo de la página */
 body {
-    font-family: Lato;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 24px;
-    text-align: left;
-    width: 506px;
-    height: 24px;
-    gap: 0px;
-    opacity: 0px;
-    background: #fbfbfc;
-    }
+    font-family: Lato; /* Establece la fuente para el cuerpo */
+    font-size: 20px; /* Tamaño de fuente */
+    font-weight: 400; /* Grosor de la fuente */
+    line-height: 24px; /* Altura de línea */
+    text-align: left; /* Alineación del texto */
+    gap: 0px; /* Espacio entre elementos */
+    opacity: 0px; /* Opacidad del cuerpo */
+    color: #09244B;
+    background-color: #CDCDCD;
+}
 
 .container {
     width: 1440px;
     height: 3236px;
-    top: -5842px;
-    left: -6309px;
-    gap: 0px;
+    margin: 0 auto;
     opacity: 0px;
     background: #FFFFFF;
 }
 
-.breadcrumbs {
-width: 533px;
-height: 24px;
-top: 156px;
-left: -118px;
-padding: 1px 0px 3px 243.23px;
-gap: 0px;
-opacity: 0px;
+/* Estilos para la miga de pan */
+.breadcrumb-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
-.breadcrumbs a {
-    text-decoration: none;
-    color: #007bff;
+ul.breadcrumb {
+    padding: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
 }
+
+.breadcrumb li {
+    font-size: 16px;
+}
+
+.breadcrumb li:not(:last-child)::after {
+    content: '>';
+    margin: 0 10px;
+    color: #666666;
+}
+
+.breadcrumb a {
+    text-decoration: none;
+    color: #666666;
+}
+
+.breadcrumb a:hover {
+    color: #09244B;
+}
+
 
 /* Estilos para los formularios */
 form {
-    margin-bottom: 20px;
+    margin-top: 40px;
 }
 
 label {
     display: block;
-    margin-bottom: 5px;
+    padding-top: 70px;
 }
 
 input[type="text"],
@@ -74,10 +91,14 @@ border: 1px solid #CDCDCD
 .button-container {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 200px;
 }
 
-.button-save, .button-continue {
+.button-save:hover, .button-continue:hover {
+    background-color: #C5A3F8;
+}
+
+.button-save {
     width: 127px;
     height: 60px;
     padding: 16px, 28px, 16px, 28px;
@@ -91,8 +112,20 @@ border: 1px solid #CDCDCD
     transition: background-color 0.3s;
 }
 
-.button-save:hover, .button-continue:hover {
-    background-color: #C5A3F8;
+.button-continue {
+    width: 143px; /* Ancho del botón */
+    height: 60px; /* Alto del botón */
+    top: 2918px; /* Ubicación vertical del botón desde el borde superior de la página */
+    left: 793px; /* Ubicación horizontal del botón desde el borde izquierdo de la página */
+    gap: 0px; /* Espacio entre los elementos si el botón contiene varios elementos */
+    border-radius: 8px;
+    border: 1px solid transparent;
+    background-color: #E9D7FE;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    left: calc(50% - 100px); /* Ajusta el valor numérico para mover los botones a la izquierda */
 }
 
 h1 {
