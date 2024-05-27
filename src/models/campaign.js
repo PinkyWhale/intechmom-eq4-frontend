@@ -1,35 +1,25 @@
-import { Schema, model } from "mongoose";
+const { Schema, model } = require("mongoose");
 
-const campaignModelo = new Schema({
-  redSocial: {
+const campaignSchema = new Schema({
+  campaignName: {
     type: String,
-    require: true,
+    required: true,
   },
-  ubicacion: {
+  reason: {
     type: String,
-    require: true,
+    required: true,
   },
-  isSpecialDate: {
-    type: Boolean,
-    require: true,
-  },
-  content: {
-    type: Boolean,
-    require: true,
-  },
-  discount: {
+  location: {
     type: String,
-    require: true,
+    required: true,
   },
-  formatType: {
-    // imagen o video, No se necesita para la respuesta api
-    type: Boolean,
-    require: true,
-  },
-  publicationTypes: {
-    // tipo de publiicacion, No se necesita para la respuesta api
+  socialMedia: {
     type: String,
-    require: true,
+    required: true,
+  },
+  contentType: {
+    type: String,
+    required: true,
   },
   responseAI: {
     type: String,
@@ -37,4 +27,6 @@ const campaignModelo = new Schema({
   },
 });
 
-export default model("campaign", campaignModelo);
+const Campaign = model("Campaign", campaignSchema);
+
+module.exports = Campaign;

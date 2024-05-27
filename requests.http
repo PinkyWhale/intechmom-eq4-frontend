@@ -2,7 +2,6 @@
 GET http://127.0.0.1:3000/api/ecommerce
 Content-Type: application/json
 
-### GET:ID
 ### POST ECOMMERCE
 POST http://127.0.0.1:3000/api/ecommerce
 Content-Type: application/json
@@ -20,6 +19,40 @@ Content-Type: application/json
     "urlFacebook": "",
     "urlInstagram": "https://www.instagram.com/asoemaf_achiras?igsh=MWtraHE3enJxeTV4OQ==",
     "urlTiktokr": "",
-    "urlGoogleMaps": "",
-    "UserEntreprenuer": ""
+    "urlGoogleMaps": ""
 }
+
+### POST CAMPAIGN
+POST http://127.0.0.1:3000/api/campaign
+Content-Type: application/json
+
+{
+    "campaignName": "chocotorta",
+    "reason": "día de la madre",
+    "location": "Bogotá D.C",
+    "socialMedia": "Instagram",
+    "contentType": "Foto"
+}
+### GET CAMPAIGN
+GET http://127.0.0.1:3000/api/campaign
+Content-Type: application/json
+
+### GET:ID CAMPAIGN
+GET http://127.0.0.1:3000/api/campaign/.....
+Content-Type: application/json
+
+### PATCH:ID CAMPAIGN
+PATCH http://127.0.0.1:3000/api/campaign/.....
+Content-Type: application/json
+
+{
+    "campaignName": "Heladeria",
+    "reason": "día del padre",
+    "location": "Cundinamarca",
+    "socialMedia": "TikTok",
+    "contentType": "Video"
+}
+
+### DELETE:ID CAMPAIGN
+DELETE http://127.0.0.1:3000/api/campaign/.....
+Content-Type: application/json

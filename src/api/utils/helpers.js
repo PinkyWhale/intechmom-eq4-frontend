@@ -1,9 +1,9 @@
-const Ecommerce = require("../../models/elevator-pitch");
+const Campaign = require("../../models/campaign.js");
 
-const getEcommerceBy = async (filter) => {
-  const personajeEncontrado = await Ecommerce.find(filter);
-  console.log(personajeEncontrado);
-  return personajeEncontrado;
+const getCampaignBy = async (filter) => {
+  const campaignFound = await Campaign.find(filter);
+  console.log(campaignFound);
+  return campaignFound;
 };
 
-module.exports = getEcommerceBy;
+module.exports = getCampaignBy;
