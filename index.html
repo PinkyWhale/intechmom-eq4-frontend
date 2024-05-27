@@ -7,14 +7,12 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="breadcrumbs">
-     <ul>
-      <li><a href="#">Crear campaña</a></li>
-      <li>Perfil comercial</li>
-     </ul>
- </div> 
+    <div class="miga-de-pan">
+        <a href="url-de-la-pantalla-anterior">Crear campaña</a> > Perfil comercial
+    </div>
 
 <div class="container">
+    <div id="image-buttons">
     <form id="elevator-form">
         <label for="emprendedora">Nombre de la marca/emprendimiento/negocio/proyecto.*</label>
         <input type="text" id="emprendedora" required maxlength="200">
@@ -39,10 +37,10 @@
     
         <label for="descripcion-estrella">Descripción del producto estrella/principal/más vendido.*</label>
         <input type="text" id="descripcion-estrella" required maxlength="200">
-     </form>
+     <!-- </form> -->
 
  <h1>Describir la personalidad de tu marca. (Tono y voz)*</h1>
-    <div id="image-buttons">
+    
         <div class="button-row">
             <div class="image-button" data-value="1">
                 <img src="./img/heroic.png" alt="Heroica">
@@ -73,7 +71,7 @@
             </div>
     </div>
    
-    <form id="redes-sociales-form">
+    <!-- <form id="redes-sociales-form"> -->
         
         <label for="instagram">Enlace a Instagram.*</label>
         <input type="url" id="instagram">
@@ -83,16 +81,18 @@
         <input type="url" id="facebook">
         <label for="link">Enlace a tú pagina web.</label>
         <input type="text" id="website" name="website" placeholder="https://www.tupaginaweb.com">
-        <label for="google-maps">Enlace a Google Maps.</label>
-        <input type="url" id="google-maps">
-
+        
         <div class="button-container">
-            <button class="button-save">Guardar</button>
+            <button class="button-save" type="submit">Guardar</button>
             <button class="button-continue">Continuar</button>
         </div>
     </form>
 </div>
 <div id="elevatorPitchOutput"></div>
+<footer>
+    <div class="footer-line"></div>
+    <p>© 2023 MotherShip</p>
+</footer>
 <script src="script.js"></script>
 </body>
 </html>
