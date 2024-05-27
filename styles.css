@@ -1,0 +1,193 @@
+/* Estilos generales para el cuerpo de la página */
+body {
+    font-family: Lato; /* Establece la fuente para el cuerpo */
+    font-size: 20px; /* Tamaño de fuente */
+    font-weight: 400; /* Grosor de la fuente */
+    line-height: 24px; /* Altura de línea */
+    text-align: left; /* Alineación del texto */
+    gap: 0px; /* Espacio entre elementos */
+    opacity: 0px; /* Opacidad del cuerpo */
+    color: #09244b;
+    background-color: #cdcdcd;
+  }
+  
+  .container {
+    width: 1440px;
+    height: 3000px;
+    margin: 0 auto;
+    opacity: 1px;
+    background: #ffffff;
+  }
+  
+  /* Estilos para la miga de pan */
+  .miga-de-pan {
+    text-align: center;
+    margin-top: 20px;
+    color: #5D00B9;
+    margin-right: 770px; /* Ajusta el valor según lo desees */
+  }
+  
+  .miga-de-pan a {
+    text-decoration: none;
+    color: #9CA3AF;
+  }
+  
+  /* Estilos para los formularios */
+  form {
+    margin-top: 40px;
+  }
+  
+  label {
+    display: block;
+    padding-top: 70px;
+  }
+  
+  input[type="text"],
+  textarea {
+    width: 1180px;
+    height: 50px;
+    gap: 0px;
+    border-radius: 4px 0px 0px 0px;
+    border: 1px 0px 0px 0px;
+    opacity: 0px;
+    background: #ffffff;
+    border: 1px solid #cdcdcd;
+    margin: 0 auto;
+  }
+  
+  input[type="url"] {
+    width: 1180px;
+    height: 50px;
+    gap: 0px;
+    border-radius: 4px 0px 0px 0px;
+    border: 1px 0px 0px 0px;
+    opacity: 0px;
+    background: #ffffff;
+    border: 1px solid #cdcdcd;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 200px;
+    gap: 400px;
+  }
+  
+  .button-save:hover,
+  .button-continue:hover {
+    background-color: #c5a3f8;
+  }
+  
+  .button-save {
+    width: 127px;
+    height: 60px;
+    padding: 16px, 28px, 16px, 28px;
+    gap: 8px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    background-color: #e9d7fe;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .button-continue {
+    width: 143px; /* Ancho del botón */
+    height: 60px; /* Alto del botón */
+    top: 2918px; /* Ubicación vertical del botón desde el borde superior de la página */
+    left: 793px; /* Ubicación horizontal del botón desde el borde izquierdo de la página */
+    gap: 0px; /* Espacio entre los elementos si el botón contiene varios elementos */
+    border-radius: 8px;
+    border: 1px solid transparent;
+    background-color: #e9d7fe;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    left: calc(
+      50% - 100px
+    ); /* Ajusta el valor numérico para mover los botones a la izquierda */
+  }
+  
+  h1 {
+    font-family: Lato;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    width: 506px;
+    height: 24px;
+    gap: 0px;
+    opacity: 0px;
+  }
+  
+  /* Estilos para los botones de imágenes */
+  .image-container {
+    width: Fixed (761px) px;
+    height: Fixed (211px) px;
+    top: 1484px;
+    left: 348px;
+    gap: 25px;
+    opacity: 0px;
+    opacity: 1; /* Cambiado a 1 para hacer las imágenes visibles */
+  }
+  
+  #image-buttons {
+    display: grid;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .button-row {
+    display: flex;
+  }
+  
+  .image-button {
+    margin: 10px;
+    text-align: center;
+    margin-top: 80px;
+    margin-left: 150px;
+    margin-right: -50px;
+  }
+  
+  .image-button img {
+    width: 223px;
+    height: 212.87px;
+    top: 1799px;
+    left: 350px;
+    gap: 0px;
+    opacity: 0px;
+  }
+  
+  .image-button p {
+    margin-top: 5px;
+  }
+  
+  /* Estilos para los enlaces a redes sociales */
+  #redes-sociales-form {
+    margin-top: 20px;
+  }
+  
+  /* Estilos para el botón de generar */
+  #generate-btn {
+    background-color: #cac9d3;
+  }
+  footer {
+    text-align: center; /* Alinea el contenido al centro */
+    font-family: Lato;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.8px;
+    margin-top: 80px;
+  }
+  
+  .footer-line {
+    border-top: 2px solid #09244B; /* Crea la línea en la parte superior del footer */
+    margin-bottom: 10px; /* Espacio entre la línea y el texto */
+  }
+  
+  p {
+    color: #09244B; /* Color del texto */
+    text-align: center; /* Alineación del texto */
+  }
