@@ -1,5 +1,6 @@
 const Joi = require("joi");
 
+// Esquema de validación para la creación de un Elevator Pitch
 const createElevatorSchema = Joi.object({
   UserEntreprenuer: Joi.string().required().min(3).max(200),
   story: Joi.string().required().min(3).max(200),
@@ -10,7 +11,7 @@ const createElevatorSchema = Joi.object({
   starProduct: Joi.string().required().min(3).max(200),
   starProductDescription: Joi.string().required().min(3).max(200),
   brandPersonality: Joi.string().required().min(3).max(200),
-  urlFacebook: Joi.string()
+  urlFacebook: Joi.string() //(opcional)
     .uri()
     .pattern(/^https:\/\//)
     .optional(),
@@ -18,20 +19,21 @@ const createElevatorSchema = Joi.object({
     .uri()
     .pattern(/^https:\/\//)
     .required(),
-  urlTiktok: Joi.string()
+  urlTiktok: Joi.string() //(opcional)
     .uri()
     .pattern(/^https:\/\//)
     .optional(),
-  urlGoogleMaps: Joi.string()
+  urlGoogleMaps: Joi.string() //(opcional)
     .uri()
     .pattern(/^https:\/\//)
     .optional(),
-  urlYouWeb: Joi.string()
+  urlYouWeb: Joi.string() //(opcional)
     .uri()
     .pattern(/^https:\/\//)
     .optional(),
 });
 
+// Middleware para validar la creación de un Elevator Pitch
 const validateCreationElevator = async (request, response, next) => {
   try {
     await createElevatorSchema.validateAsync(request.body);

@@ -1,5 +1,5 @@
 ### GET
-GET http://127.0.0.1:3000/api/ecommerce
+GET http://127.0.0.1:3000
 Content-Type: application/json
 
 ### POST ECOMMERCE

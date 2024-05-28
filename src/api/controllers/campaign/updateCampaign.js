@@ -1,5 +1,6 @@
 const Campaign = require("../../../models/campaign.js");
 
+// Función para editar una campaña existente
 const editCampaign = async (req, res) => {
   const { id } = req.params;
   const {
@@ -10,6 +11,7 @@ const editCampaign = async (req, res) => {
     contentType,
     responseAi,
   } = req.body;
+  // Actualizar la campaña en la base de datos
   await Campaign.updateOne(
     {
       _id: id,

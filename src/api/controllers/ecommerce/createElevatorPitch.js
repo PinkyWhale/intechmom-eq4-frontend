@@ -2,10 +2,11 @@ const { ChatGoogleGenerativeAI } = require("@langchain/google-genai");
 const { HarmBlockThreshold, HarmCategory } = require("@google/generative-ai");
 const { config } = require("dotenv");
 const Ecommerce = require("../../../models/elevator-pitch.js");
-const mockGenerateElevatorResponse = require("../../../../mocks/generateElevatorMock.js");
+const mockGenerateElevatorResponse = require("../../../mocks/generateElevatorMock.js");
 
 config(); // Carga las variables de entorno desde el archivo .env
 
+// Definición de los arquetipos de marca con sus descripciones y palabras clave
 const archetypes = {
   wise: {
     name: "Sabio",
@@ -43,6 +44,7 @@ const archetypes = {
   },
 };
 
+// Función para generar un Elevator Pitch utilizando la configuración proporcionada
 async function generateElevator(ElevatorPitchConfigs) {
   const {
     UserEntreprenuer,
@@ -60,18 +62,20 @@ async function generateElevator(ElevatorPitchConfigs) {
     brandPersonality,
   } = ElevatorPitchConfigs;
 
-  console.log("Brand Personality: ", brandPersonality);
-  console.log("Archetypes: ", archetypes);
-
+  // Normalizar la personalidad de la marca a minúsculas para comparaciones consistentes
   const normalizedPersonality = brandPersonality.toLowerCase();
+
+  // Verificar si la personalidad de la marca está definida en los arquetipos
   if (!archetypes[normalizedPersonality]) {
     throw new Error(
       `El arquetipo '${brandPersonality}' no está definido en los arquetipos.`
     );
   }
 
+  // Obtener el arquetipo correspondiente a la personalidad de la marca
   const archetype = archetypes[normalizedPersonality];
 
+  // Construir el texto de las redes sociales
   let redesText = "";
   if (urlFacebook) redesText += `Facebook: ${urlFacebook}\n`;
   if (urlInstagram) redesText += `Instagram: ${urlInstagram}\n`;
@@ -80,6 +84,7 @@ async function generateElevator(ElevatorPitchConfigs) {
   if (urlYouWeb) redesText += `Your Web: ${urlYouWeb}\n`;
 
   // Aquí es donde normalmente harías la llamada al modelo de generación de LangChain
+  // Comentado para evitar llamadas en el desarrollo local, usa el mock en su lugar
   // const model = new ChatGoogleGenerativeAI({
   //   apiKey: process.env.GEMINI_API_KEY,
   //   model: "gemini-pro",
@@ -104,25 +109,27 @@ async function generateElevator(ElevatorPitchConfigs) {
   //   ],
   // ]);
 
-  // En su lugar, utilizamos el mock
+  // Uso del mock para evitar dependencias externas durante el desarrollo
   const createEcommerce = mockGenerateElevatorResponse;
 
   return createEcommerce;
 }
 
-// Función para crear un registro de ecommerce
+// Función para manejar la creación de un registro de ecommerce
 const createEcommerce = async (req, res) => {
   try {
     // Validar los datos de entrada aquí, si es necesario
 
     // Guardar la solicitud en la base de datos MongoDB
     const mongoResponse = await Ecommerce.create(req.body);
+
     // Generar una respuesta usando el modelo de LangChain
     const responseAi = await generateElevator(req.body);
+
     // Enviar una respuesta con los resultados
     res.status(201).json({ mongoResponse, responseAi });
   } catch (error) {
-    console.error("Error detallado:", error);
+    // Manejo del error sin imprimir en consola
     res.status(400).json({
       message: "Error al crear el Elevator Pitch",
       error: error.message,

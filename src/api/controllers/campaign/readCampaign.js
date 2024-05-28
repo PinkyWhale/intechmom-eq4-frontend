@@ -1,10 +1,12 @@
 const getCampaignBy = require("../../utils/helpers");
 const Joi = require("joi");
 
+// Controlador para obtener una campaña por su nombre
 const getCampaignByHandler = async (req, res) => {
   try {
+    // Definir el esquema de validación para los parámetros de consulta
     const schema = Joi.object({
-      campaignName: Joi.string().required(),
+      campaignName: Joi.string().required(), // El nombre de la campaña es obligatorio
     });
 
     const { error } = schema.validate(req.query);
@@ -12,6 +14,7 @@ const getCampaignByHandler = async (req, res) => {
       return res.status(400).json({ message: error.details[0].message });
     }
 
+    // Obtener el nombre de la campaña de los parámetros de consulta
     const { campaignName } = req.query;
     const campaignFound = await getCampaignBy(campaignName);
     if (!campaignFound.length) {

@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Node.js Restfull",
   "main": "src/utils/app.js",
-  "type": "commonjs",
   "scripts": {
     "test": "jest",
     "dev": "nodemon src/utils/app.js"

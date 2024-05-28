@@ -1,5 +1,6 @@
-import Joi from "joi";
+const Joi = require("joi");
 
+// Esquema de validación para la creación de campañas
 const createCampaignSchema = Joi.object({
   campaignName: Joi.string().required(),
   reason: Joi.string().required(),
@@ -11,6 +12,7 @@ const createCampaignSchema = Joi.object({
   ResponseAi: Joi.string().required(),
 });
 
+// Esquema de validación para actualizar campañas
 const patchCampaignSchema = Joi.object({
   campaignName: Joi.string().required(),
   reason: Joi.string().required(),
@@ -22,6 +24,7 @@ const patchCampaignSchema = Joi.object({
   ResponseAi: Joi.string().required(),
 });
 
+// Middleware para validar la creación de campañas
 const validateCreationCampaign = async (request, response, next) => {
   await createCampaignSchema.validate(request.body);
   next();
@@ -31,6 +34,7 @@ const validateCreationCampaign = async (request, response, next) => {
   }
 };
 
+// Middleware para validar la actualización de campañas
 const validatePatchCampaign = async (request, response, next) => {
   await patchCampaignSchema.validate(request.body);
   next();
@@ -40,4 +44,4 @@ const validatePatchCampaign = async (request, response, next) => {
   }
 };
 
-export { validateCreationCampaign, validatePatchCampaign };
+module.exports = { validateCreationCampaign, validatePatchCampaign };

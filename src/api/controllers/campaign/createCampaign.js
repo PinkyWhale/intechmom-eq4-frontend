@@ -2,7 +2,7 @@ const { ChatGoogleGenerativeAI } = require("@langchain/google-genai");
 const { HarmBlockThreshold, HarmCategory } = require("@google/generative-ai");
 const { config } = require("dotenv");
 const Campaign = require("../../../models/campaign.js");
-const mockGenerateCampaignResponse = require("../../../../mocks/generateCampaignMock.js");
+const mockGenerateCampaignResponse = require("../../../mocks/generateCampaignMock.js");
 
 config(); // Carga las variables de entorno desde el archivo .env
 
