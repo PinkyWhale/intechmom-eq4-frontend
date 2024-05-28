@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log("test");
     if (validateForm()) {
       generateElevatorPitch();
-      // Aquí puedes redirigir al otro HTML con el texto generado y los botones "Copiar" y "Guardar"
+      // Aquí se puede redirigir al otro HTML con el texto generado y los botones "Copiar" y "Guardar"
     }
   });
 
