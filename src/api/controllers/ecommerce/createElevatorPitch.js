@@ -110,7 +110,7 @@ async function generateElevator(ElevatorPitchConfigs) {
   // ]);
 
   // Uso del mock para evitar dependencias externas durante el desarrollo
-  const createEcommerce = mockGenerateElevatorResponse;
+  const createEcommerce = mockGenerateElevatorResponse(ElevatorPitchConfigs);
 
   return createEcommerce;
 }
