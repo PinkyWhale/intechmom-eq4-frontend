@@ -72,7 +72,7 @@ async function generateCampaign(campaignConfigs) {
   ]); */
 
   // En su lugar, utilizamos el mock
-  const createCampaign = mockGenerateCampaignResponse;
+  const createCampaign = mockGenerateCampaignResponse(campaignConfigs);
 
   return createCampaign;
 }
