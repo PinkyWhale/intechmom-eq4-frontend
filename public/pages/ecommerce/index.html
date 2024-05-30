@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elevator Pitch</title>
+<link rel="stylesheet" href="../../styles/ecommerce/elavator-main.css">
+</head>
+<link href="<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<body>
+    <div class="miga-de-pan">
+        <a href="url-de-la-pantalla-anterior">Crear campaña</a> > Perfil comercial
+    </div>
+
+<div class="container">
+    <div id="image-buttons">
+    <form id="elevator-form">
+        <label for="emprendedora">Nombre de la marca/emprendimiento/negocio/proyecto.*</label>
+        <input type="text" id="emprendedora" required maxlength="200">
+    
+        <label for="historia">Describe brevemente la historia de tu emprendimiento/negocio/proyecto*</label>
+        <input type="text" id="historia" required maxlength="200">
+    
+        <label for="nombre-marca">Nombre de la marca/emprendimiento/negocio/proyecto.*</label>
+        <input type="text" id="nombre-marca" required maxlength="200">
+    
+        <label for="que-vende">¿Qué vendes?*</label>
+        <input type="text" id="que-vende" required maxlength="200">
+    
+        <label for="como-hace">¿Cómo haces lo que vendes?*</label>
+        <input type="text" id="como-hace" required maxlength="200">
+    
+        <label for="por-quienes">¿Por quíenes lo haces?*</label>
+        <input type="text" id="por-quienes" required maxlength="200">
+    
+        <label for="producto-estrella">¿Cuál es el producto estrella/Principal/más vendido?*</label>
+        <input type="text" id="producto-estrella" required maxlength="200">
+    
+        <label for="descripcion-estrella">Descripción del producto estrella/principal/más vendido.*</label>
+        <input type="text" id="descripcion-estrella" required maxlength="200">
+     <!-- </form> -->
+
+ <h1>Describir la personalidad de tu marca. (Tono y voz)*</h1>
+    
+        <div class="button-row">
+            <div class="image-button" data-value="1">
+                <img src="../../images/heroic.png" alt="Heroica">
+                <p>Heroína</p>
+            </div>
+            <div class="image-button" data-value="2">
+                <img src="../../images/common.png" alt="Común">
+                <p>Común</p>
+            </div>
+            <div class="image-button" data-value="3">
+                <img src="../../images/innocent.png" alt="Inocente">
+                <p>Inocente</p>
+            </div>
+        </div>
+        
+        <div class="button-row">
+            <div class="image-button" data-value="4">
+                <img src="../../images/jester.png" alt="Bufona">
+                <p>Bufona</p>
+            </div>
+            <div class="image-button" data-value="5">
+                <img src="../../images/creative.png" alt="Creativa">
+                <p>Creativa</p>
+            </div>
+            <div class="image-button" data-value="6">
+                <img src="../../images/wise.png" alt="Sabia">
+                <p>Sabia</p>
+            </div>
+    </div>
+   
+    <!-- <form id="redes-sociales-form"> -->
+        
+        <label for="instagram">Enlace a Instagram.*</label>
+        <input type="url" id="instagram">
+        <label for="tiktok">Enlace a Tiktok.</label>
+        <input type="url" id="tiktok">
+        <label for="facebook">Enlace a Facebook.</label>
+        <input type="url" id="facebook">
+        <label for="link">Enlace a tú pagina web.</label>
+        <input type="text" id="website" name="website" placeholder="https://www.tupaginaweb.com">
+        
+        <div class="button-container">
+            <button class="button-save" type="submit">Guardar</button>
+            <button class="button-continue">Continuar</button>
+        </div>
+    </form>
+</div>
+<div id="elevatorPitchOutput"></div>
+<footer>
+    <div class="footer-line"></div>
+    <p>© 2023 MotherShip</p>
+</footer>
+<script src="../../components/ecommerce/form.js"></script>
+</body>
+</html>
