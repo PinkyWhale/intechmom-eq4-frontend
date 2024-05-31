@@ -14,25 +14,20 @@
       <a href="#"><span class="navega">Configuración de campaña</span></a>
     </nav>
   </header>
-  <!-- <form id="campaignForm" onsubmit="return validarFormulario(event)">
-    <div id="alertaCamposObligatorios" class="alert">
-      <div  class="triangulo">
-        <img src="../Imagenes/Vector.png" alt="Warning">
-      </div>
-   -->
+
     </div>
     <div class="form-group">
       <br><br>
       <label for="campaignName">Nombre del producto para su campaña.*</label>
       <br><br>
-      <input type="text" id="campaignName" name="campaignName" required />
+      <input type="text" id="campaignName" name="campaignName" placeholder="Ejemplo: Bolsa de compras" required />
       <div id="campaignNameError" class="error"></div>
     </div>
     <div class="form-group">
       <br><br>
       <label for="reason">Motivo de su publicación.*</label>
       <br><br>
-      <input type="text" id="reason" name="reason" required />
+      <input type="text" id="reason" name="reason" placeholder="Ejemplo: Bolsa de compras"  equired />
       <div id="reasonError" class="error"></div>
     </div>
     <div class="form-group">
@@ -40,8 +35,8 @@
       <label for="location" class="select">Ubicación.*</label>
       <br><br>
       <select id="location" name="location" required>
-        <option value="">Seleccionar</option>
-        <option value="Toda Colombia">Toda Colombia</option>
+        
+        <option  value="capital de colombia "> <p>Bogotá</p></option>
       </select>
       <div id="locationError" class="error"></div>
     </div>
@@ -50,9 +45,8 @@
       <label for="socialMedia" class="select">Elige la red social donde usarás el texto para la campaña.*</label>
       <br><br>
       <select id="socialMedia" name="socialMedia" required>
-        <option value="">Seleccionar</option>
-        <option value="Facebook">Facebook</option>
         <option value="Instagram">Instagram</option>
+        <option value="Facebook">Facebook</option>
         <option value="TikTok">TikTok</option>
         <option value="Twitter">Twitter</option>
       </select>
@@ -63,27 +57,27 @@
       <label for="contentType" class="select">Selecciona el tipo de contenido donde usarás el texto de la campaña.*</label>
       <br><br>
       <select id="contentType" name="contentType" required>
-        <option value="">Seleccionar</option>
-        <option value="Foto">Foto</option>
+        <option value="Foto">Imagen</option>
         <option value="Video">Video</option>
       </select>
       <div id="contentTypeError" class="error"></div>
     </div>
-    <br><br>
+    <br><br><br>
     <button type="button" accesskey="mostrar()" id="generateButton"   disabled><span>Generar</span></button>
   </form>
- <!-- <div id="alertasave" class="alertasave">
-    <div class=alertsavedos>
-        <img src="../Imagenes/save.png" alt="Warning">
-        <span><h6>"Se guardo con exito." </h6></span>
-        <div  class="line">
-          <img src="../Imagenes/linea.png" alt="Warning">
-        </div> 
-
-     </div>  -->
-   
-  <h3>Texto sugerido para tu campaña.</h3>
-  <div class="contenedor">
+ <br> <br> <br> <br> <br> <br>
+  <!-- <div class="alert">
+    <img src="../Imagenes/save.png" alt="Warning">
+    <span><h6>"Se guardo con exito." </h6></span>
+    <div  class="line">
+      <img src="../Imagenes/linea.png" alt="Warning">
+ </div> 
+ <div id="alertasave" class="alertasave"> -->
+    
+    </div>
+     <h3>Texto sugerido para tu campaña. </h3>
+<br><br> <br> <br>
+      <div class="contenedor">
 
     <div class="responseAI">
         <div class="card1">
@@ -101,14 +95,13 @@
       <button   onclick="mostrar()"  type="submit" class="save"><span>Guardar</span></button>
     </div>
   </div>
-  <div>
-    <button type="submit" class="next"><span>Siguiente</span></button>
-  </div>
 
   <script src="../../components/button.js"></script>
   <script src="../../components/campaign/filtro_location.js"></script>
 </body>
-<footer class="footer">
-  <p>&copy 2023 Mother Ship</p>
+<div id="elevatorPitchOutput"></div>
+<footer>
+  <div class="footer-story"></div>
+  <p>© 2023 MotherShip</p>
 </footer>
 </html>
