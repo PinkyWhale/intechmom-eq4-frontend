@@ -5,10 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Elevator Pitch</title>
 <link rel="stylesheet" href="./public/styles/ecommerce/elavator-main.css">
-</head>
 <link href="<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+
 <body>
     <div class="miga-de-pan">
         <a href="url-de-la-pantalla-anterior">Crear campaña</a> > Perfil comercial
@@ -86,15 +87,22 @@
         <input type="text" id="website" name="website" placeholder="https://www.tupaginaweb.com">
         
         <div class="button-container">
-            <button class="button-save" type="submit">Guardar</button>
+            <button id="saveButton" class="button-save" type="submit">Guardar</button>
         </div>
     </form>
 </div>
-<div id="elevatorPitchOutput"></div>
 <footer>
     <div class="footer-line"></div>
     <p>© 2023 MotherShip</p>
 </footer>
+<div id="elevatorPitchOutput"></div>
+<div id="generating-overlay" class="generating-overlay">
+    <div class="generating-content">
+        <div class="loader"></div>
+        <p>Cargando...</p>
+    </div>
+</div>
+</div>
 <script src="./public/components/ecommerce/form.js"></script>
 </body>
 </html>
