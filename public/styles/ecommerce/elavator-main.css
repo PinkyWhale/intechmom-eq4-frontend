@@ -92,24 +92,7 @@ body {
     transition: background-color 0.3s;
   }
   
-  .button-continue {
-    width: 143px; /* Ancho del botón */
-    height: 60px; /* Alto del botón */
-    top: 2918px; /* Ubicación vertical del botón desde el borde superior de la página */
-    left: 793px; /* Ubicación horizontal del botón desde el borde izquierdo de la página */
-    gap: 0px; /* Espacio entre los elementos si el botón contiene varios elementos */
-    border-radius: 8px;
-    border: 1px solid transparent;
-    background-color: #e9d7fe;
-    color: #fff;
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    left: calc(
-      50% - 100px
-    ); /* Ajusta el valor numérico para mover los botones a la izquierda */
-  }
-  
+    
   h1 {
     font-family: Montserrat;
     font-size: 20px;
@@ -190,3 +173,38 @@ body {
     color: #09244B; /* Color del texto */
     text-align: center; /* Alineación del texto */
   }
+
+  .generating-overlay {
+    position: fixed;
+    top: 50%; /* Centra verticalmente */
+    left: 50%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%);
+    max-width: 80%; /* Ancho máximo del overlay */
+    background-color: rgba(138, 109, 255, 0.9); /* Color violeta */
+    border-radius: 10px; /* Bordes redondeados */
+    z-index: 999; /* Asegura que esté por encima del contenido */
+    padding: 20px;
+    box-sizing: border-box; /* Calcula padding dentro del width */
+}
+
+.generating-content {
+    background-color: #8A6DFF;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.loader {
+    border: 8px solid #f3f3f3; /* Color de fondo del spinner */
+    border-top: 8px solid #fff; /* Color blanco del spinner */
+    border-radius: 50%;
+    width: 40px; /* Diámetro del spinner */
+    height: 40px; 
+    margin: 0 auto; /* Centra horizontalmente */
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
