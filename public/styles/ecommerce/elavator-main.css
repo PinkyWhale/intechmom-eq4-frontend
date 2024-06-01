@@ -175,6 +175,7 @@ body {
   }
 
   .generating-overlay {
+    display: none;
     position: fixed;
     top: 50%; /* Centra verticalmente */
     left: 50%; /* Centra horizontalmente */
