@@ -61,7 +61,7 @@ document.getElementById("campaignForm").addEventListener("submit", function (eve
     body: JSON.stringify(obj),
   }).then((res) => {
     sessionStorage.setItem("pitch", JSON.stringify(res.json()));
-    window.location.href = "/.html";
+    window.location.href = "storytelling.html";
   });
 
  const mockResponse = {
@@ -72,3 +72,12 @@ document.getElementById("campaignForm").addEventListener("submit", function (eve
   };
 
   sessionStorage.setItem("pitch", mockResponse.responseAi.message);
+
+  //mostrar la alerta de guardado con exito
+  function mostrarAlerta() {
+    const alerta = document.getElementById('alertsave');
+    alerta.style.display = 'block';
+    setTimeout(() => {
+        alerta.style.display = 'none';
+    }, 3000); // Ocultar la alerta después de 3 segundos
+}
