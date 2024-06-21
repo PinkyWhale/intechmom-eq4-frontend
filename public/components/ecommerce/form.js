@@ -86,6 +86,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
+  function generateElevatorPitch() {
+    showGeneratingOverlay();
+
+    // Simular la operación de guardado con un retardo de 2 segundos
+    setTimeout(function() {
+      hideGeneratingOverlay();
+    }, 3000);
+  }
+
   function showGeneratingOverlay() {
     document.getElementById('generating-overlay').style.display = 'flex';
   }
@@ -94,7 +103,12 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('generating-overlay').style.display = 'none';
   }
 
-  toggleGenerateBtn();
+  saveButton.addEventListener('click', function() {
+    if (validateForm()) {
+      generateElevatorPitch();
+    }
+  });
+
 });
 
 
